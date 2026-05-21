@@ -699,7 +699,7 @@ window.QUESTIONS = [
       D: "Intramuscular",
     },
     correctAnswer: "C",
-    explanation: "Intravenous (IV) administration delivers medication directly into the bloodstream, resulting in the fastest onset of action (seconds to minutes). Sublingual is second fastest (1–5 minutes) because it is absorbed by the sublingual vein. IM is faster than oral but slower than IV. Oral has the slowest onset due to absorption in the GI tract.",
+    explanation: "Intravenous (IV) administration delivers medication directly into the bloodstream, resulting in the fastest onset of action (seconds to minutes). Sublingual is second fastest (1–5 minutes) because it is absorbed by the sublingual veins. IM is faster than oral but slower than IV. Oral has the slowest onset due to absorption in the GI tract.",
   },
   {
     id: 50,
@@ -1495,7 +1495,7 @@ window.QUESTIONS = [
     id: 106,
     domain: "administrative",
     difficulty: "hard",
-    content: "A medical office uses the advance scheduling system 'OPAC' (open-access scheduling). What is the key principle of this system?",
+    content: "A medical office uses the advanced-access scheduling system 'OPAC' (open-access scheduling). What is the key principle of this system?",
     options: {
       A: "All appointments require 30-day advance booking",
       B: "Same-day and next-day appointments are prioritized; 'do today's work today'",
@@ -1526,12 +1526,12 @@ window.QUESTIONS = [
     content: "A patient with Medicare comes in for a service that is not covered under their plan. What form should the patient sign before the service is performed?",
     options: {
       A: "HIPAA authorization form",
-      B: "Advanced Beneficiary Notice (ABN)",
+      B: "Advance Beneficiary Notice (ABN)",
       C: "CMS-1500 claim form",
       D: "Medicare Secondary Payer questionnaire",
     },
     correctAnswer: "B",
-    explanation: "The Advanced Beneficiary Notice of Noncoverage (ABN) is required when a provider believes Medicare will not cover a service. The patient signs the ABN acknowledging they may be responsible for payment if Medicare denies the claim. Without a valid ABN, the provider cannot hold the patient responsible for non-covered services that are not medically necessary.",
+    explanation: "The Advance Beneficiary Notice of Noncoverage (ABN) is required when a provider believes Medicare will not cover a service. The patient signs the ABN acknowledging they may be responsible for payment if Medicare denies the claim. Without a valid ABN, the provider cannot hold the patient responsible for non-covered services that are not medically necessary.",
   },
 
   // ─── MEDICAL TERMINOLOGY & ANATOMY (109–126) ─────────────────────────────────
@@ -1869,7 +1869,7 @@ window.QUESTIONS = [
     options: {
       A: "Apply a tourniquet above the injury site",
       B: "Report immediately to the supervisor and follow the facility's exposure control plan",
-      C: "Squeeze the wound to express blood, then wash with soap and water",
+      C: "Wash the wound immediately and thoroughly with soap and water, then report to the supervisor",
       D: "Apply antiseptic and cover with a bandage without reporting",
     },
     correctAnswer: "C",
@@ -1896,7 +1896,7 @@ window.QUESTIONS = [
     content: "What does the term 'scope of practice' mean for a medical assistant?",
     options: {
       A: "The geographic area in which the MA is licensed to work",
-      B: "The range of tasks and responsibilities that a MA is legally and professionally permitted to perform, as defined by state law and the supervising provider",
+      B: "The range of tasks and responsibilities that an MA is legally and professionally permitted to perform, as defined by state law and the supervising provider",
       C: "The number of patients the MA is allowed to see per day",
       D: "The types of medications the MA is allowed to prescribe",
     },

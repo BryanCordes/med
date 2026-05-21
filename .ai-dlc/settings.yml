@@ -1,0 +1,5 @@
+git:
+  change_strategy: intent
+  default_branch: auto
+  auto_merge: true
+default_announcements: [changelog]

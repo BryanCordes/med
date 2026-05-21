@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CCMA Practice Exam</title>
+  <meta name="description" content="Comprehensive 150-question CCMA practice exam aligned to the NHA blueprint. Timed exam mode, instant feedback, domain breakdown.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════ LANDING -->
+  <div id="screen-landing">
+    <div class="container">
+
+      <header class="landing-header">
+        <h1>CCMA Practice Exam</h1>
+        <p class="subtitle">
+          <span>NHA Blueprint Aligned</span> &nbsp;&bull;&nbsp; 150 Questions &nbsp;&bull;&nbsp; All 6 Domains
+        </p>
+      </header>
+
+      <!-- Resume banner (shown if a session exists) -->
+      <div id="resume-banner" class="resume-banner hidden" role="alert"></div>
+
+      <!-- Mode selection -->
+      <div class="mode-buttons" role="group" aria-label="Exam mode">
+        <button class="mode-btn" id="btn-timed" aria-label="Timed Exam mode">
+          <span class="mode-icon">⏱</span>
+          <span class="mode-title">Timed Exam</span>
+          <span class="mode-desc">Simulate the real exam<br>2 hour time limit · 150 questions</span>
+        </button>
+        <button class="mode-btn" id="btn-practice" aria-label="Practice Mode">
+          <span class="mode-icon">📖</span>
+          <span class="mode-title">Practice Mode</span>
+          <span class="mode-desc">No timer<br>Instant feedback on every answer</span>
+        </button>
+      </div>
+
+      <!-- Domain overview -->
+      <div class="card">
+        <h3 style="margin-bottom:1rem">Content Domain Breakdown</h3>
+        <table class="domain-table" aria-label="NHA CCMA content domains">
+          <thead>
+            <tr>
+              <th>Domain</th>
+              <th class="hide-mobile">Exam Weight</th>
+              <th>Questions</th>
+            </tr>
+          </thead>
+          <tbody id="domain-tbody"></tbody>
+        </table>
+        <p class="text-muted mt-2" style="font-size:0.8rem">
+          Questions are randomized each attempt. Content aligned to the NHA CCMA official content outline.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════ EXAM -->
+  <div id="screen-exam" class="hidden">
+
+    <!-- Sticky header -->
+    <header class="exam-header" role="banner">
+      <div class="container">
+        <div class="exam-header-inner">
+          <div class="progress-info">
+            <span class="progress-text" id="progress-text">Question 1 of 150</span>
+            <div class="domain-badge-wrap">
+              <span class="badge badge-blue" id="domain-badge"></span>
+              <span class="badge" id="q-diff"></span>
+            </div>
+          </div>
+          <div class="timer-display hidden" id="timer-display" role="timer" aria-label="Time remaining">00:00</div>
+        </div>
+        <div class="progress-bar-wrap" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar-fill" id="progress-bar-fill" style="width:0%"></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="card question-card">
+        <div class="question-meta">
+          <span class="q-number" id="q-number">#1</span>
+        </div>
+        <p class="question-stem" id="question-stem"></p>
+        <ul class="options-list" id="options-list" role="radiogroup" aria-label="Answer options"></ul>
+        <div class="feedback-block hidden" id="feedback-block" role="alert"></div>
+        <div class="exam-actions">
+          <button class="btn btn-primary" id="btn-check" disabled>Check Answer</button>
+          <button class="btn btn-secondary hidden" id="btn-next">Next Question →</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════ RESULTS -->
+  <div id="screen-results" class="hidden">
+    <div class="container">
+
+      <div class="card score-card" aria-live="polite">
+        <div class="score-big">
+          <span id="score-raw">0</span><span style="font-size:2rem;color:var(--muted)" id="score-total">/150</span>
+        </div>
+        <div class="score-pct" id="score-pct">0%</div>
+        <div>
+          <span class="score-indicator" id="score-indicator"></span>
+        </div>
+        <p class="score-disclaimer">
+          The NHA CCMA uses a scaled passing score. 70% is an approximate benchmark — not a guarantee of passing or failing.
+        </p>
+        <p class="time-spent hidden" id="time-spent"></p>
+      </div>
+
+      <div class="card domain-breakdown">
+        <h3 style="margin-bottom:1rem">Performance by Domain</h3>
+        <table aria-label="Domain score breakdown">
+          <thead>
+            <tr>
+              <th>Domain</th>
+              <th>Score</th>
+              <th style="width:40%">%</th>
+            </tr>
+          </thead>
+          <tbody id="domain-results-tbody"></tbody>
+        </table>
+        <p class="text-muted mt-2" style="font-size:0.8rem">
+          Rows highlighted in amber indicate domains below 70% — focus your study time here.
+        </p>
+      </div>
+
+      <div class="results-actions">
+        <button class="btn btn-primary" id="btn-review">Review All Questions</button>
+        <button class="btn btn-secondary" id="btn-new-exam">Start New Exam</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════ REVIEW -->
+  <div id="screen-review" class="hidden">
+    <div class="container">
+
+      <div class="review-header">
+        <div>
+          <button class="btn btn-ghost btn-back-results" style="margin-bottom:0.5rem">← Back to Results</button>
+          <h2>Question Review</h2>
+        </div>
+        <div class="filter-bar" role="group" aria-label="Filter questions">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="incorrect">Incorrect Only</button>
+          <button class="filter-btn" data-filter="correct">Correct Only</button>
+        </div>
+      </div>
+
+      <div id="review-cards" role="list"></div>
+
+      <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap">
+        <button class="btn btn-secondary btn-back-results">← Back to Results</button>
+        <button class="btn btn-primary" id="btn-new-exam-2">Start New Exam</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Back-to-top -->
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top">↑</button>
+
+  <script src="src/questions.js"></script>
+  <script src="src/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(*)",
+      "PowerShell(*)",
+      "WebFetch(domain:github.com)",
+      "PowerShell(npm *)",
+      "Bash(gh repo *)",
+      "PowerShell(winget install *)",
+      "PowerShell(Get-Command *)",
+      "Bash(CLAUDE_PLUGIN_ROOT=\"C:/Users/bcord/.claude/plugins/cache/ai-dlc/ai-dlc/1.84.1\" node \"C:/Users/bcord/.claude/plugins/cache/ai-dlc/ai-dlc/1.84.1/mcp-server/dist/server.mjs\")",
+      "Bash(kill %1)",
+      "Bash(CLAUDE_PLUGIN_ROOT=\"\" bash -c 'exec node \"C:/Users/bcord/.claude/plugins/cache/ai-dlc/ai-dlc/1.84.1/mcp-server/dist/server.mjs\"')",
+      "Bash(CLAUDE_PLUGIN_ROOT=\"C:/Users/bcord/.claude/plugins/cache/ai-dlc/ai-dlc/1.84.1\" timeout 5 node \"C:/Users/bcord/.claude/plugins/cache/ai-dlc/ai-dlc/1.84.1/mcp-server/dist/server.mjs\")",
+      "PowerShell($env:CLAUDE_PLUGIN_ROOT = \"C:\\\\Users\\\\bcord\\\\.claude\\\\plugins\\\\marketplaces\\\\ai-dlc\\\\plugin\"; node \"C:\\\\Users\\\\bcord\\\\.claude\\\\plugins\\\\marketplaces\\\\ai-dlc\\\\plugin\\\\mcp-server\\\\dist\\\\server.mjs\" 2>&1 | Select-Object -First 30)",
+      "PowerShell($env:CLAUDE_PLUGIN_ROOT = \"C:\\\\Users\\\\bcord\\\\.claude\\\\plugins\\\\marketplaces\\\\ai-dlc\\\\plugin\"; node --input-type=module \"C:\\\\Users\\\\bcord\\\\.claude\\\\plugins\\\\marketplaces\\\\ai-dlc\\\\plugin\\\\mcp-server\\\\dist\\\\server.mjs\" 2>&1; exit 0)",
+      "PowerShell($env:CLAUDE_PLUGIN_ROOT = \"C:\\\\Users\\\\bcord\\\\.claude\\\\plugins\\\\marketplaces\\\\ai-dlc\\\\plugin\"; bash -c 'exec node \"${CLAUDE_PLUGIN_ROOT}/mcp-server/dist/server.mjs\"' 2>&1; $LASTEXITCODE)",
+      "Bash(bash *)",
+      "PowerShell($env:CLAUDE_PLUGIN_ROOT = \"C:\\\\Users\\\\bcord\\\\.claude\\\\plugins\\\\marketplaces\\\\ai-dlc\\\\plugin\"; $proc = Start-Process -FilePath \"node\" -ArgumentList \"C:\\\\Users\\\\bcord\\\\.claude\\\\plugins\\\\marketplaces\\\\ai-dlc\\\\plugin\\\\mcp-server\\\\dist\\\\server.mjs\" -NoNewWindow -PassThru -RedirectStandardError \"C:\\\\Temp\\\\mcp-stderr.txt\"; Start-Sleep -Milliseconds 1500; $proc.HasExited; if \\(-not $proc.HasExited\\) { $proc.Kill\\(\\) }; Get-Content \"C:\\\\Temp\\\\mcp-stderr.txt\" -ErrorAction SilentlyContinue)",
+      "Bash(mkdir -p .ai-dlc/knowledge)",
+      "Bash(cat)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "WebSearch",
+      "WebFetch(domain:www.forex.com)",
+      "WebFetch(domain:docs.labs.gaincapital.com)",
+      "WebFetch(domain:tulipindicators.org)",
+      "WebFetch(domain:faq.labs.gaincapital.com)",
+      "WebFetch(domain:pypi.org)",
+      "WebFetch(domain:finnhub.io)",
+      "PowerShell(winget *)",
+      "WebFetch(domain:developer.oanda.com)",
+      "WebFetch(domain:hexdocs.pm)",
+      "WebFetch(domain:hibernix.github.io)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "ruflo"
+  ]
+}

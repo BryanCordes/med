@@ -10,7 +10,19 @@ let tickTimer = null;
 // ─── STATE ──────────────────────────────────────────────────────────────────
 
 function createSession(mode) {
-  const shuffled = fisherYates([...QUESTIONS.map(q => q.id)]);
+  // Build per-domain pools
+  const domainMap = {};
+  DOMAINS.forEach(d => { domainMap[d.id] = []; });
+  QUESTIONS.forEach(q => { if (domainMap[q.domain]) domainMap[q.domain].push(q.id); });
+
+  // Stratified sample: pick targetCount from each domain pool
+  const selected = [];
+  DOMAINS.forEach(d => {
+    const pool = fisherYates([...domainMap[d.id]]);
+    selected.push(...pool.slice(0, d.targetCount));
+  });
+
+  const shuffled = fisherYates(selected);
   return {
     mode,
     questionIds: shuffled,

@@ -442,12 +442,12 @@ window.QUESTIONS = [
     content: "A mother brings her 2-month-old for a well-child visit. Which vaccines are due at this visit according to the CDC schedule?",
     options: {
       A: "MMR, varicella, hepatitis A",
-      B: "DTaP, Hib, IPV, PCV13, hepatitis B, rotavirus",
+      B: "DTaP, Hib, IPV, PCV15 or PCV20, hepatitis B, rotavirus",
       C: "Hepatitis B only",
       D: "MMR and varicella",
     },
     correctAnswer: "B",
-    explanation: "At the 2-month well-child visit, the CDC recommends: DTaP, Hib (Haemophilus influenzae type b), IPV (inactivated polio), PCV13 (pneumococcal), hepatitis B (2nd dose), and oral rotavirus. This is the most vaccine-heavy visit. MMR and varicella are not given until 12 months.",
+    explanation: "At the 2-month well-child visit, the CDC recommends: DTaP, Hib (Haemophilus influenzae type b), IPV (inactivated polio), PCV15 or PCV20 (pneumococcal conjugate), hepatitis B (2nd dose), and oral rotavirus. This is the most vaccine-heavy visit. MMR and varicella are not given until 12 months. (Note: PCV13 was the prior standard; PCV15 or PCV20 replaced it in 2023.)",
   },
   {
     id: 32,

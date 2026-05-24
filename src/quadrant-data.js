@@ -18,31 +18,38 @@ const QUADRANT_ORGANS = [
   },
   {
     name: 'Gallbladder',
-    quadrant: 'ruq', svgX: 90, svgY: 76, svgLabel: 'Gallbladder',
+    quadrant: 'ruq', svgX: 90, svgY: 73, svgLabel: 'Gallbladder',
     description: 'Bile storage organ beneath the liver; located at the junction of the right MCL and costal margin.',
     painReferral: 'Referred right shoulder/scapular pain; classic biliary colic is episodic RUQ pain after fatty meals.',
     examTechnique: "Murphy's sign: press under right costal margin at MCL and ask patient to inhale — positive if inspiration stops due to pain.",
   },
   {
     name: 'Right Kidney (Upper)',
-    quadrant: 'ruq', svgX: 90, svgY: 94, svgLabel: 'R. Kidney',
+    quadrant: 'ruq', svgX: 90, svgY: 88, svgLabel: 'R. Kidney',
     description: 'Retroperitoneal; the right kidney sits slightly lower than the left due to the liver.',
     painReferral: 'Kidney pain (pyelonephritis, hydronephrosis): constant flank/CVA pain with fever and dysuria — does NOT radiate to groin. Renal/ureteral colic (stone moving in ureter): severe colicky flank-to-groin pain — that is the stone, not the kidney.',
     examTechnique: 'CVA percussion: fist percussion at the costovertebral angle posteriorly. Bimanual palpation: patient supine, anterior hand palpates flank deeply while posterior hand (under back) ballots kidney upward.',
   },
   {
     name: 'Duodenum',
-    quadrant: 'ruq', svgX: 90, svgY: 112, svgLabel: 'Duodenum',
+    quadrant: 'ruq', svgX: 90, svgY: 103, svgLabel: 'Duodenum',
     description: 'First segment of the small intestine; receives bile and pancreatic enzymes. Curves around the pancreatic head.',
     painReferral: 'Duodenal ulcer: pain occurs 2–3 hours after eating (when stomach empties and acid is unbuffered) and classically wakes the patient at 2–4 AM. Food or antacids relieve it. Contrast: gastric ulcer pain is WORSENED by eating.',
     examTechnique: 'Deep palpation of epigastric/RUQ region; assess for guarding or rigidity suggesting perforation.',
   },
   {
     name: 'Pancreas (Head)',
-    quadrant: 'ruq', svgX: 90, svgY: 130, svgLabel: 'Pancreas (Hd)',
+    quadrant: 'ruq', svgX: 90, svgY: 118, svgLabel: 'Pancreas (Hd)',
     description: 'The head of the pancreas lies in the curve of the duodenum in the RUQ/epigastric region.',
     painReferral: 'Epigastric pain radiating to the back (classic for pancreatitis); pain worsens supine, improves leaning forward.',
     examTechnique: 'Deep palpation of epigastric region; pancreas is not normally palpable — tenderness and rigidity are key findings.',
+  },
+  {
+    name: 'Right Adrenal Gland',
+    quadrant: 'ruq', svgX: 90, svgY: 133, svgLabel: 'R. Adrenal',
+    description: 'Sits atop the right kidney; retroperitoneal and not palpable unless grossly enlarged.',
+    painReferral: 'Addison\'s disease (adrenal insufficiency): hypotension, hyperpigmentation, fatigue, hyponatremia, hyperkalemia — can present as adrenal crisis. Cushing\'s syndrome (excess cortisol): central obesity, moon face, buffalo hump, hypertension, striae. Pheochromocytoma: episodic severe hypertension, headache, diaphoresis, palpitations.',
+    examTechnique: 'Not directly palpable; assessed via lab values (cortisol, ACTH, electrolytes, plasma metanephrines) and imaging. Right-sided pheochromocytoma may present identically to left — "5 Hs": hypertension, headache, hyperhidrosis, hyperglycemia, hypermetabolism.',
   },
   // ── LUQ ─────────────────────────────────────────────────────────────────────
   {

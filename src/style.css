@@ -494,6 +494,9 @@ p  { line-height: 1.7; }
   fill: #475569;
   pointer-events: none;
   user-select: none;
+  stroke: white;
+  stroke-width: 4;
+  paint-order: stroke fill;
 }
 
 .q-hit { transition: fill-opacity 0.15s, stroke 0.15s; }
@@ -507,6 +510,9 @@ p  { line-height: 1.7; }
   fill: #334155;
   cursor: pointer;
   user-select: none;
+  stroke: white;
+  stroke-width: 3;
+  paint-order: stroke fill;
 }
 .organ-label:hover { fill: #1d4ed8; }
 .organ-label--selected { fill: #1d4ed8; font-weight: 700; }

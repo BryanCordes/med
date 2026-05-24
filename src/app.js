@@ -579,8 +579,8 @@ function renderBodyDiagram() {
   <!-- Quadrant labels (top of each section) -->
   <text x="90"  y="45"  text-anchor="middle" class="q-label">RUQ</text>
   <text x="146" y="45"  text-anchor="middle" class="q-label">LUQ</text>
-  <text x="88"  y="163" text-anchor="middle" class="q-label">RLQ</text>
-  <text x="146" y="163" text-anchor="middle" class="q-label">LLQ</text>
+  <text x="88"  y="170" text-anchor="middle" class="q-label">RLQ</text>
+  <text x="146" y="170" text-anchor="middle" class="q-label">LLQ</text>
   <!-- Midline label -->
   <text x="120" y="8" text-anchor="middle" style="font-size:5.5px;fill:#94a3b8">Midline</text>
   <!-- Organ labels -->
@@ -606,8 +606,9 @@ function selectQuadrant(qId) {
   document.querySelectorAll('.organ-label').forEach(el => el.classList.remove('organ-label--selected'));
   document.querySelectorAll('.q-hit').forEach(rect => {
     const isActive = rect.dataset.quadrant === qId;
-    rect.setAttribute('fill-opacity', isActive ? '0.8' : '0.3');
-    rect.setAttribute('stroke', isActive ? '#1d4ed8' : 'transparent');
+    rect.setAttribute('fill-opacity', isActive ? '0.55' : '0.2');
+    rect.setAttribute('stroke', isActive ? '#93c5fd' : 'transparent');
+    rect.setAttribute('stroke-width', '1.5');
   });
   renderQuadrantInfo(qId);
 }
@@ -622,8 +623,9 @@ function selectOrgan(name) {
 
   document.querySelectorAll('.q-hit').forEach(rect => {
     const isActive = rect.dataset.quadrant === organ.quadrant;
-    rect.setAttribute('fill-opacity', isActive ? '0.8' : '0.3');
-    rect.setAttribute('stroke', isActive ? '#1d4ed8' : 'transparent');
+    rect.setAttribute('fill-opacity', isActive ? '0.55' : '0.2');
+    rect.setAttribute('stroke', isActive ? '#93c5fd' : 'transparent');
+    rect.setAttribute('stroke-width', '1.5');
   });
 
   const region = QUADRANT_REGIONS.find(r => r.id === organ.quadrant);

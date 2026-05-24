@@ -144,15 +144,15 @@
       id: 481,
       domain: "administrative",
       difficulty: "easy",
-      content: "The superbill (encounter form) is used to:",
+      content: "Which federal program provides health insurance primarily for adults aged 65 and older and individuals under 65 with certain disabilities?",
       options: {
-        A: "Document patient vital signs in the nursing note",
-        B: "Obtain prior authorization from the insurance company",
-        C: "Summarize CPT and ICD-10 codes for billing after each visit",
-        D: "Report payer claims to the state insurance board"
+        A: "Medicaid",
+        B: "CHIP (Children's Health Insurance Program)",
+        C: "TRICARE",
+        D: "Medicare"
       },
-      correctAnswer: "C",
-      explanation: "The superbill lists the diagnosis (ICD-10-CM) and procedures (CPT codes) from each patient visit and serves as the basis for claim submission to payers. It may be electronic or paper-based. Accurate superbill completion is essential for correct and timely reimbursement."
+      correctAnswer: "D",
+      explanation: "Medicare is a federal insurance program for: (1) adults 65 and older; (2) individuals under 65 with end-stage renal disease (ESRD) or ALS; (3) individuals under 65 who have received Social Security Disability Insurance for at least 24 months. Medicaid is a joint federal-state means-tested program for low-income individuals. CHIP covers uninsured children in low-income families. TRICARE covers military members, veterans, and their dependents."
     },
     {
       id: 482,
@@ -256,15 +256,15 @@
       id: 489,
       domain: "terminology",
       difficulty: "easy",
-      content: "Cyanosis is best described as:",
+      content: "The term 'icterus' (jaundice) describes:",
       options: {
-        A: "Yellowing of the skin due to elevated bilirubin",
-        B: "Reddening of the skin due to vasodilation",
-        C: "Bluish discoloration of the skin due to low oxygen saturation",
-        D: "Pallor of the skin due to anemia or vasoconstriction"
+        A: "Bluish discoloration of the skin and mucous membranes due to low oxygen saturation",
+        B: "Reddening of the skin and mucous membranes due to vasodilation",
+        C: "Yellow discoloration of the skin, sclera, and mucous membranes due to elevated bilirubin",
+        D: "Pale, blanched appearance of the skin due to vasoconstriction or anemia"
       },
       correctAnswer: "C",
-      explanation: "Cyanosis is the bluish-purple discoloration of skin, lips, and nail beds caused by deoxygenated hemoglobin in superficial vessels. Central cyanosis (lips, mucous membranes) indicates systemic hypoxemia. Peripheral cyanosis (digits) may reflect poor local perfusion. Jaundice is yellowing; erythema is redness; pallor is whiteness."
+      explanation: "Icterus (jaundice) is yellow pigmentation visible in the skin, sclera, and mucous membranes when serum bilirubin exceeds approximately 2–3 mg/dL. The sclera often shows yellowing before the skin. Classified as: prehepatic (hemolysis), intrahepatic (hepatitis, cirrhosis), or posthepatic/cholestatic (bile duct obstruction). Cyanosis = blue; erythema = red; pallor = pale white."
     },
     {
       id: 490,

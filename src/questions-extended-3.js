@@ -214,29 +214,29 @@
       id: 456,
       domain: "clinical",
       difficulty: "easy",
-      content: "Normal oxygen saturation (SpO₂) in a healthy adult breathing room air is:",
+      content: "Blood pressure measurement and venipuncture should be avoided on an arm with an arteriovenous (AV) fistula for dialysis because:",
       options: {
-        A: "85–90%",
-        B: "90–94%",
-        C: "95–100%",
-        D: "100% only"
+        A: "Fistula arms always have elevated blood pressure, making readings inaccurate",
+        B: "Compression or needlestick near the fistula can damage the vessel or cause fistula failure — the patient's lifeline for dialysis access",
+        C: "The brachial artery in a fistula arm cannot be located by palpation",
+        D: "HIPAA prohibits procedures on extremities with medical devices"
       },
-      correctAnswer: "C",
-      explanation: "Normal SpO₂ is 95–100%. Values below 90% indicate hypoxemia and typically require supplemental oxygen and physician notification. Patients with COPD may have a personal baseline of 88–92%; always consider the individual patient's baseline."
+      correctAnswer: "B",
+      explanation: "An AV fistula (surgically joined artery and vein) is the preferred permanent hemodialysis access. BP cuff compression or venipuncture in that arm can cause thrombosis, infection, or stenosis — potentially destroying the access permanently. Always check the patient's chart for fistula or graft locations and document which arm was used for BP and blood draws."
     },
     {
       id: 457,
       domain: "clinical",
       difficulty: "easy",
-      content: "The Snellen chart is read at a standard distance of:",
+      content: "To visualize the tympanic membrane with an otoscope in an adult patient, the medical assistant should:",
       options: {
-        A: "10 feet",
-        B: "15 feet",
-        C: "20 feet",
-        D: "25 feet"
+        A: "Pull the pinna downward and forward before inserting the speculum",
+        B: "Insert the speculum to the full depth of the ear canal for best visualization",
+        C: "Pull the pinna upward and backward to straighten the ear canal, then gently insert the speculum",
+        D: "Lubricate the speculum tip with saline prior to insertion"
       },
       correctAnswer: "C",
-      explanation: "The Snellen chart is standardized at 20 feet (6 meters). Normal vision is recorded as 20/20: the numerator is the test distance, and the denominator is the distance at which a person with normal vision can read the same line. 20/40 means the patient at 20 ft reads what normal vision sees at 40 ft."
+      explanation: "In adults, pulling the pinna upward and backward straightens the sigmoid-shaped external ear canal, allowing clear visualization of the tympanic membrane. In children under 3, pull the pinna downward and backward. The speculum should be inserted only about 1 cm — never advance it to the eardrum. Select the largest speculum that fits the canal comfortably."
     },
     {
       id: 458,
@@ -256,15 +256,15 @@
       id: 459,
       domain: "clinical",
       difficulty: "easy",
-      content: "The Ishihara test is used to assess:",
+      content: "The FLACC scale is the preferred pain assessment tool for:",
       options: {
-        A: "Distance visual acuity",
-        B: "Intraocular pressure",
-        C: "Color vision deficiency",
-        D: "Peripheral vision"
+        A: "Alert adults who can verbally self-report their pain on a 0–10 scale",
+        B: "Pre-operative patients rating surgical anxiety",
+        C: "Non-verbal or pre-verbal patients (infants, young children, or any patient unable to self-report pain)",
+        D: "Patients experiencing referred pain only"
       },
       correctAnswer: "C",
-      explanation: "Ishihara pseudoisochromatic plates detect red-green color vision deficiency. Each plate contains a number visible to those with normal color vision but not those with the corresponding deficiency. It does not test acuity, intraocular pressure (tonometry does), or visual fields."
+      explanation: "FLACC (Face, Legs, Activity, Cry, Consolability) is an observer-rated pain scale for infants and children aged 2 months to 7 years, or any non-verbal patient who cannot self-report. Each of the five categories scores 0–2, for a maximum score of 10. The numeric (0–10) scale is used for verbal adults; the FACES scale for children aged 3–7 who can point to a face; FLACC requires observer assessment only."
     },
     {
       id: 460,
@@ -396,15 +396,15 @@
       id: 469,
       domain: "diagnostic",
       difficulty: "medium",
-      content: "Hemolysis of a blood sample most critically affects which laboratory test?",
+      content: "Capillary (fingerstick) blood glucose results are considered unreliable in which patient situation?",
       options: {
-        A: "Serum sodium",
-        B: "Serum potassium",
-        C: "Serum glucose",
-        D: "Serum albumin"
+        A: "A patient with well-controlled type 2 diabetes on metformin",
+        B: "A patient with peripheral arterial disease or poor distal circulation",
+        C: "A patient who has eaten 2 hours before testing",
+        D: "An elderly patient over age 70"
       },
       correctAnswer: "B",
-      explanation: "Potassium is the primary intracellular cation. When RBCs are hemolyzed, intracellular K⁺ is released into serum, causing pseudohyperkalemia — a falsely elevated result. This is the most clinically significant specimen quality error for electrolyte panels. Hemolyzed specimens must be recollected before reporting."
+      explanation: "Capillary glucose may not reflect true blood glucose in patients with poor peripheral perfusion — peripheral arterial disease, hypovolemic shock, hypothermia, or severe edema. In these cases, venous plasma glucose is preferred because capillary blood glucose can be significantly lower or higher than central glucose due to abnormal interstitial fluid exchange. Document the collection method used whenever venous glucose is drawn instead of capillary."
     },
     {
       id: 470,

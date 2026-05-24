@@ -471,7 +471,7 @@ p  { line-height: 1.7; }
 
 .quadrant-layout {
   display: grid;
-  grid-template-columns: 400px 1fr;
+  grid-template-columns: 560px 1fr;
   gap: 1.5rem;
   align-items: start;
 }
@@ -483,7 +483,7 @@ p  { line-height: 1.7; }
 
 .body-svg {
   width: 100%;
-  max-width: 400px;
+  max-width: 560px;
   height: auto;
   border: 1px solid var(--border);
   border-radius: 12px;

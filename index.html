@@ -38,6 +38,11 @@
           <span class="mode-title">Practice Mode</span>
           <span class="mode-desc">No timer<br>Instant feedback on every answer</span>
         </button>
+        <button class="mode-btn" id="btn-quadrant" aria-label="Body Quadrant Reference">
+          <span class="mode-icon">🫁</span>
+          <span class="mode-title">Body Quadrant Reference</span>
+          <span class="mode-desc">Interactive diagram &amp; flashcards<br>4 abdominal quadrants · Organs &amp; clinical signs</span>
+        </button>
       </div>
 
       <!-- Domain overview -->
@@ -169,6 +174,59 @@
     </div>
   </div>
 
+  <!-- ══════════════════════════════════════════════════════ QUADRANT -->
+  <div id="screen-quadrant" class="hidden">
+    <div class="container">
+
+      <div class="review-header" style="margin-bottom:1.5rem">
+        <div>
+          <button class="btn btn-ghost" id="btn-quadrant-back" style="margin-bottom:0.5rem">← Back to Home</button>
+          <h2>Body Quadrant Reference</h2>
+        </div>
+        <div class="filter-bar" role="group" aria-label="View mode">
+          <button class="filter-btn active" id="btn-view-diagram" data-view="diagram">Diagram</button>
+          <button class="filter-btn" id="btn-view-deck" data-view="deck">Flashcards</button>
+        </div>
+      </div>
+
+      <!-- Diagram View -->
+      <div id="quadrant-diagram-view">
+        <div class="quadrant-layout">
+          <div class="quadrant-svg-wrap">
+            <div id="quadrant-svg-container"></div>
+          </div>
+          <div class="quadrant-info-panel card" id="quadrant-info-panel">
+            <p class="text-muted" style="text-align:center;padding:2rem 1rem">
+              Click a quadrant on the diagram to see organs and clinical facts.
+            </p>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:1.5rem">
+          <button class="btn btn-primary" id="btn-start-deck">Study Flashcards →</button>
+        </div>
+      </div>
+
+      <!-- Deck View -->
+      <div id="quadrant-deck-view" class="hidden">
+        <div class="flashcard-container" id="flashcard-container" role="button" tabindex="0" aria-label="Click to flip card">
+          <div class="flashcard" id="flashcard">
+            <div class="flashcard-front" id="flashcard-front"></div>
+            <div class="flashcard-back" id="flashcard-back"></div>
+          </div>
+        </div>
+        <div class="deck-controls">
+          <button class="btn btn-secondary" id="btn-prev-card">← Previous</button>
+          <span class="deck-progress" id="deck-progress">1 of 20</span>
+          <button class="btn btn-primary" id="btn-next-card">Next →</button>
+        </div>
+        <p class="text-muted" style="text-align:center;font-size:0.85rem;margin-top:0.75rem">
+          Click the card to flip it
+        </p>
+      </div>
+
+    </div>
+  </div>
+
   <!-- Back-to-top -->
   <button class="back-to-top" id="back-to-top" aria-label="Back to top">↑</button>
 
@@ -177,6 +235,7 @@
   <script src="src/questions-extended-2.js"></script>
   <script src="src/questions-extended-3.js"></script>
   <script src="src/questions-extended-4.js"></script>
+  <script src="src/quadrant-data.js"></script>
   <script src="src/app.js"></script>
 </body>
 </html>

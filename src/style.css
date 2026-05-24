@@ -466,3 +466,162 @@ p  { line-height: 1.7; }
 @media (max-width: 768px) {
   .domain-table .hide-mobile { display: none; }
 }
+
+/* ─── QUADRANT SCREEN ─────────────────────────────────────── */
+
+.quadrant-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+@media (max-width: 640px) {
+  .quadrant-layout { grid-template-columns: 1fr; }
+}
+
+.quadrant-svg-wrap { display: flex; justify-content: center; }
+
+.body-svg {
+  width: 100%;
+  max-width: 240px;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.q-label {
+  font-size: 9.5px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  fill: #475569;
+  pointer-events: none;
+  user-select: none;
+}
+
+.q-hit { transition: fill-opacity 0.15s, stroke 0.15s; }
+.q-hit:hover { filter: brightness(0.9); }
+.q-hit:focus { outline: none; stroke: #1d4ed8 !important; stroke-width: 2 !important; }
+
+.quadrant-info-panel {
+  min-height: 200px;
+  max-height: 520px;
+  overflow-y: auto;
+}
+
+.organ-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.75rem;
+  background: var(--bg);
+}
+.organ-name {
+  font-weight: 700;
+  font-size: 0.92rem;
+  margin-bottom: 0.35rem;
+  color: var(--text);
+}
+.organ-fact {
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.55;
+  margin-bottom: 0.2rem;
+}
+
+/* ─── FLASHCARD ───────────────────────────────────────────── */
+
+.flashcard-container {
+  perspective: 1200px;
+  width: 100%;
+  max-width: 560px;
+  height: 300px;
+  margin: 0 auto 1.25rem;
+  cursor: pointer;
+}
+@media (max-width: 640px) {
+  .flashcard-container { height: 340px; }
+}
+
+.flashcard {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.42s ease;
+  border-radius: 16px;
+}
+.flashcard.flipped { transform: rotateY(180deg); }
+
+.flashcard-front,
+.flashcard-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-md);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  text-align: center;
+  overflow-y: auto;
+}
+.flashcard-back {
+  transform: rotateY(180deg);
+  justify-content: flex-start;
+  padding-top: 1.25rem;
+  text-align: left;
+}
+
+.fc-quadrant-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.18rem 0.6rem;
+  border-radius: 999px;
+  margin-bottom: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #1e293b;
+  white-space: nowrap;
+}
+.fc-organ-name {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 0.4rem;
+  line-height: 1.25;
+}
+.fc-hint {
+  font-size: 0.76rem;
+  color: var(--muted);
+  margin-top: 0.4rem;
+}
+.fc-fact {
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.55;
+  margin-bottom: 0.55rem;
+  text-align: left;
+  width: 100%;
+}
+
+.deck-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.deck-progress {
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--muted);
+  min-width: 4.5rem;
+  text-align: center;
+}

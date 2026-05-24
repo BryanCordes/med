@@ -111,7 +111,7 @@ let currentSession = null;
 let currentResult = null;
 
 function showScreen(id) {
-  ['screen-landing', 'screen-exam', 'screen-results', 'screen-review'].forEach(s => {
+  ['screen-landing', 'screen-exam', 'screen-results', 'screen-review', 'screen-quadrant'].forEach(s => {
     document.getElementById(s).classList.add('hidden');
   });
   document.getElementById(id).classList.remove('hidden');
@@ -502,12 +502,177 @@ function escapeHtml(s) {
     .replace(/"/g, '&quot;');
 }
 
+// ─── QUADRANT SCREEN ─────────────────────────────────────────────────────────
+
+let deckIndex = 0;
+let deckFlipped = false;
+
+function showQuadrantScreen() {
+  showScreen('screen-quadrant');
+  showDiagramView();
+  renderBodyDiagram();
+}
+
+function showDiagramView() {
+  document.getElementById('quadrant-diagram-view').classList.remove('hidden');
+  document.getElementById('quadrant-deck-view').classList.add('hidden');
+  document.getElementById('btn-view-diagram').classList.add('active');
+  document.getElementById('btn-view-deck').classList.remove('active');
+}
+
+function showDeckView() {
+  document.getElementById('quadrant-diagram-view').classList.add('hidden');
+  document.getElementById('quadrant-deck-view').classList.remove('hidden');
+  document.getElementById('btn-view-diagram').classList.remove('active');
+  document.getElementById('btn-view-deck').classList.add('active');
+  deckIndex = 0;
+  deckFlipped = false;
+  renderCard();
+}
+
+function renderBodyDiagram() {
+  const container = document.getElementById('quadrant-svg-container');
+
+  // Build color map for hit-area fills
+  const colorMap = {};
+  QUADRANT_REGIONS.forEach(r => { colorMap[r.id] = r.color; });
+
+  // Quadrant hit-area coordinates: [x, y, width, height]
+  const hitAreas = {
+    ruq: [66, 38, 48, 115],
+    luq: [118, 38, 56, 115],
+    rlq: [63, 158, 51, 118],
+    llq: [118, 158, 56, 118],
+  };
+
+  const hitRects = QUADRANT_REGIONS.map(q => {
+    const [x, y, w, h] = hitAreas[q.id];
+    return `<rect class="q-hit" data-quadrant="${q.id}"
+      x="${x}" y="${y}" width="${w}" height="${h}"
+      fill="${colorMap[q.id]}" fill-opacity="0.45"
+      stroke="transparent" stroke-width="2"
+      rx="4" style="cursor:pointer"
+      role="button" tabindex="0"
+      aria-label="${q.label}"/>`;
+  }).join('\n    ');
+
+  container.innerHTML = `
+<svg viewBox="0 0 240 320" xmlns="http://www.w3.org/2000/svg"
+     class="body-svg" role="img" aria-label="Abdominal quadrant diagram">
+  <!-- Torso silhouette -->
+  <path d="M62,22 Q82,10 120,10 Q158,10 178,22 L188,82 Q193,142 178,202 L168,298 Q150,313 120,313 Q90,313 72,298 L62,202 Q47,142 52,82 Z"
+        fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+  <!-- Quadrant color fills -->
+  ${hitRects}
+  <!-- Divider lines -->
+  <line x1="62" y1="158" x2="178" y2="158" stroke="#64748b" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="120" y1="32" x2="120" y2="295" stroke="#64748b" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <!-- Quadrant labels -->
+  <text x="90"  y="100" text-anchor="middle" class="q-label">RUQ</text>
+  <text x="148" y="100" text-anchor="middle" class="q-label">LUQ</text>
+  <text x="88"  y="218" text-anchor="middle" class="q-label">RLQ</text>
+  <text x="148" y="218" text-anchor="middle" class="q-label">LLQ</text>
+  <!-- Midline label -->
+  <text x="120" y="8" text-anchor="middle" style="font-size:5.5px;fill:#94a3b8">Midline</text>
+</svg>`;
+
+  container.querySelectorAll('.q-hit').forEach(rect => {
+    rect.addEventListener('click', () => selectQuadrant(rect.dataset.quadrant));
+    rect.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectQuadrant(rect.dataset.quadrant); }
+    });
+  });
+}
+
+function selectQuadrant(qId) {
+  document.querySelectorAll('.q-hit').forEach(rect => {
+    const isActive = rect.dataset.quadrant === qId;
+    rect.setAttribute('fill-opacity', isActive ? '0.8' : '0.3');
+    rect.setAttribute('stroke', isActive ? '#1d4ed8' : 'transparent');
+  });
+  renderQuadrantInfo(qId);
+}
+
+function renderQuadrantInfo(qId) {
+  const region = QUADRANT_REGIONS.find(r => r.id === qId);
+  const organs = QUADRANT_ORGANS.filter(o => o.quadrant === qId);
+  const panel = document.getElementById('quadrant-info-panel');
+
+  panel.innerHTML = `
+    <h3 style="margin-bottom:1rem">${escapeHtml(region.label)}</h3>
+    ${organs.map(o => `
+      <div class="organ-card">
+        <div class="organ-name">${escapeHtml(o.name)}</div>
+        <div class="organ-fact"><strong>Location:</strong> ${escapeHtml(o.description)}</div>
+        ${o.painReferral  ? `<div class="organ-fact"><strong>Pain / Referral:</strong> ${escapeHtml(o.painReferral)}</div>` : ''}
+        ${o.examTechnique ? `<div class="organ-fact"><strong>Exam Technique:</strong> ${escapeHtml(o.examTechnique)}</div>` : ''}
+      </div>`).join('')}`;
+}
+
+function renderCard() {
+  const organ  = QUADRANT_ORGANS[deckIndex];
+  const region = QUADRANT_REGIONS.find(r => r.id === organ.quadrant);
+  const fc     = document.getElementById('flashcard');
+
+  fc.classList.toggle('flipped', deckFlipped);
+
+  document.getElementById('flashcard-front').innerHTML = `
+    <div class="fc-quadrant-badge" style="background:${region.color}">${escapeHtml(region.label)}</div>
+    <div class="fc-organ-name">${escapeHtml(organ.name)}</div>
+    <div class="fc-hint">Click to reveal</div>`;
+
+  document.getElementById('flashcard-back').innerHTML = `
+    <div class="fc-quadrant-badge" style="background:${region.color}">${escapeHtml(region.label)}</div>
+    <div class="fc-organ-name" style="font-size:1.05rem;margin-bottom:0.75rem">${escapeHtml(organ.name)}</div>
+    <div class="fc-fact"><strong>Location:</strong> ${escapeHtml(organ.description)}</div>
+    ${organ.painReferral  ? `<div class="fc-fact"><strong>Pain / Referral:</strong> ${escapeHtml(organ.painReferral)}</div>` : ''}
+    ${organ.examTechnique ? `<div class="fc-fact"><strong>Exam Technique:</strong> ${escapeHtml(organ.examTechnique)}</div>` : ''}`;
+
+  document.getElementById('deck-progress').textContent = `${deckIndex + 1} of ${QUADRANT_ORGANS.length}`;
+  document.getElementById('btn-prev-card').disabled = deckIndex === 0;
+  document.getElementById('btn-next-card').textContent =
+    deckIndex < QUADRANT_ORGANS.length - 1 ? 'Next →' : 'Restart';
+}
+
+function flipCard() {
+  deckFlipped = !deckFlipped;
+  document.getElementById('flashcard').classList.toggle('flipped', deckFlipped);
+}
+
+function nextCard() {
+  deckIndex = deckIndex < QUADRANT_ORGANS.length - 1 ? deckIndex + 1 : 0;
+  deckFlipped = false;
+  renderCard();
+}
+
+function prevCard() {
+  if (deckIndex > 0) {
+    deckIndex--;
+    deckFlipped = false;
+    renderCard();
+  }
+}
+
 // ─── INIT ────────────────────────────────────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', () => {
   // Mode buttons
   document.getElementById('btn-timed').addEventListener('click', () => startExam('timed'));
   document.getElementById('btn-practice').addEventListener('click', () => startExam('practice'));
+  document.getElementById('btn-quadrant').addEventListener('click', () => showQuadrantScreen());
+
+  // Quadrant screen
+  document.getElementById('btn-quadrant-back').addEventListener('click', () => renderLanding());
+  document.getElementById('btn-start-deck').addEventListener('click', () => showDeckView());
+  document.getElementById('btn-view-diagram').addEventListener('click', () => showDiagramView());
+  document.getElementById('btn-view-deck').addEventListener('click', () => showDeckView());
+  document.getElementById('btn-prev-card').addEventListener('click', () => prevCard());
+  document.getElementById('btn-next-card').addEventListener('click', () => nextCard());
+  const fc = document.getElementById('flashcard-container');
+  fc.addEventListener('click', () => flipCard());
+  fc.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flipCard(); }
+  });
 
   // Results actions
   document.getElementById('btn-review').addEventListener('click', () => renderReview());

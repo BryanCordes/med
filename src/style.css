@@ -470,20 +470,16 @@ p  { line-height: 1.7; }
 /* ─── QUADRANT SCREEN ─────────────────────────────────────── */
 
 .quadrant-layout {
-  display: grid;
-  grid-template-columns: 560px 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 1.5rem;
-  align-items: start;
-}
-@media (max-width: 640px) {
-  .quadrant-layout { grid-template-columns: 1fr; }
 }
 
 .quadrant-svg-wrap { display: flex; justify-content: center; }
 
 .body-svg {
   width: 100%;
-  max-width: 560px;
+  max-width: 100%;
   height: auto;
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -518,9 +514,7 @@ p  { line-height: 1.7; }
 .organ-label:focus-visible { fill: #1d4ed8; }
 
 .quadrant-info-panel {
-  min-height: 200px;
-  max-height: 520px;
-  overflow-y: auto;
+  min-height: 100px;
 }
 
 .organ-card {

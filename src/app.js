@@ -506,6 +506,7 @@ function escapeHtml(s) {
 
 let deckIndex = 0;
 let deckFlipped = false;
+let deckOrder = [];
 
 function showQuadrantScreen() {
   showScreen('screen-quadrant');
@@ -525,6 +526,7 @@ function showDeckView() {
   document.getElementById('quadrant-deck-view').classList.remove('hidden');
   document.getElementById('btn-view-diagram').classList.remove('active');
   document.getElementById('btn-view-deck').classList.add('active');
+  deckOrder = fisherYates([...QUADRANT_ORGANS]);
   deckIndex = 0;
   deckFlipped = false;
   renderCard();
@@ -556,6 +558,13 @@ function renderBodyDiagram() {
       aria-label="${q.label}"/>`;
   }).join('\n    ');
 
+  const organLabels = QUADRANT_ORGANS.map(o =>
+    `<text class="organ-label" data-organ="${escapeHtml(o.name)}"
+          x="${o.svgX}" y="${o.svgY}" text-anchor="middle"
+          role="button" tabindex="0"
+          aria-label="${escapeHtml(o.name)}">${escapeHtml(o.svgLabel)}</text>`
+  ).join('\n  ');
+
   container.innerHTML = `
 <svg viewBox="0 0 240 320" xmlns="http://www.w3.org/2000/svg"
      class="body-svg" role="img" aria-label="Abdominal quadrant diagram">
@@ -567,13 +576,15 @@ function renderBodyDiagram() {
   <!-- Divider lines -->
   <line x1="62" y1="158" x2="178" y2="158" stroke="#64748b" stroke-width="1.5" stroke-dasharray="5,3"/>
   <line x1="120" y1="32" x2="120" y2="295" stroke="#64748b" stroke-width="1.5" stroke-dasharray="5,3"/>
-  <!-- Quadrant labels -->
-  <text x="90"  y="100" text-anchor="middle" class="q-label">RUQ</text>
-  <text x="148" y="100" text-anchor="middle" class="q-label">LUQ</text>
-  <text x="88"  y="218" text-anchor="middle" class="q-label">RLQ</text>
-  <text x="148" y="218" text-anchor="middle" class="q-label">LLQ</text>
+  <!-- Quadrant labels (top of each section) -->
+  <text x="90"  y="45"  text-anchor="middle" class="q-label">RUQ</text>
+  <text x="146" y="45"  text-anchor="middle" class="q-label">LUQ</text>
+  <text x="88"  y="163" text-anchor="middle" class="q-label">RLQ</text>
+  <text x="146" y="163" text-anchor="middle" class="q-label">LLQ</text>
   <!-- Midline label -->
   <text x="120" y="8" text-anchor="middle" style="font-size:5.5px;fill:#94a3b8">Midline</text>
+  <!-- Organ labels -->
+  ${organLabels}
 </svg>`;
 
   container.querySelectorAll('.q-hit').forEach(rect => {
@@ -582,15 +593,49 @@ function renderBodyDiagram() {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectQuadrant(rect.dataset.quadrant); }
     });
   });
+
+  container.querySelectorAll('.organ-label').forEach(el => {
+    el.addEventListener('click', e => { e.stopPropagation(); selectOrgan(el.dataset.organ); });
+    el.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectOrgan(el.dataset.organ); }
+    });
+  });
 }
 
 function selectQuadrant(qId) {
+  document.querySelectorAll('.organ-label').forEach(el => el.classList.remove('organ-label--selected'));
   document.querySelectorAll('.q-hit').forEach(rect => {
     const isActive = rect.dataset.quadrant === qId;
     rect.setAttribute('fill-opacity', isActive ? '0.8' : '0.3');
     rect.setAttribute('stroke', isActive ? '#1d4ed8' : 'transparent');
   });
   renderQuadrantInfo(qId);
+}
+
+function selectOrgan(name) {
+  const organ = QUADRANT_ORGANS.find(o => o.name === name);
+  if (!organ) return;
+
+  document.querySelectorAll('.organ-label').forEach(el =>
+    el.classList.toggle('organ-label--selected', el.dataset.organ === name)
+  );
+
+  document.querySelectorAll('.q-hit').forEach(rect => {
+    const isActive = rect.dataset.quadrant === organ.quadrant;
+    rect.setAttribute('fill-opacity', isActive ? '0.8' : '0.3');
+    rect.setAttribute('stroke', isActive ? '#1d4ed8' : 'transparent');
+  });
+
+  const region = QUADRANT_REGIONS.find(r => r.id === organ.quadrant);
+  const panel = document.getElementById('quadrant-info-panel');
+  panel.innerHTML = `
+    <h3 style="margin-bottom:1rem">${escapeHtml(organ.name)}</h3>
+    <div class="organ-card">
+      <div class="organ-fact"><strong>Quadrant:</strong> ${escapeHtml(region.label)}</div>
+      <div class="organ-fact"><strong>Location:</strong> ${escapeHtml(organ.description)}</div>
+      ${organ.painReferral  ? `<div class="organ-fact"><strong>Pain / Referral:</strong> ${escapeHtml(organ.painReferral)}</div>` : ''}
+      ${organ.examTechnique ? `<div class="organ-fact"><strong>Exam Technique:</strong> ${escapeHtml(organ.examTechnique)}</div>` : ''}
+    </div>`;
 }
 
 function renderQuadrantInfo(qId) {
@@ -610,14 +655,14 @@ function renderQuadrantInfo(qId) {
 }
 
 function renderCard() {
-  const organ  = QUADRANT_ORGANS[deckIndex];
+  if (!deckOrder.length) deckOrder = fisherYates([...QUADRANT_ORGANS]);
+  const organ  = deckOrder[deckIndex];
   const region = QUADRANT_REGIONS.find(r => r.id === organ.quadrant);
   const fc     = document.getElementById('flashcard');
 
   fc.classList.toggle('flipped', deckFlipped);
 
   document.getElementById('flashcard-front').innerHTML = `
-    <div class="fc-quadrant-badge" style="background:${region.color}">${escapeHtml(region.label)}</div>
     <div class="fc-organ-name">${escapeHtml(organ.name)}</div>
     <div class="fc-hint">Click to reveal</div>`;
 
@@ -628,10 +673,10 @@ function renderCard() {
     ${organ.painReferral  ? `<div class="fc-fact"><strong>Pain / Referral:</strong> ${escapeHtml(organ.painReferral)}</div>` : ''}
     ${organ.examTechnique ? `<div class="fc-fact"><strong>Exam Technique:</strong> ${escapeHtml(organ.examTechnique)}</div>` : ''}`;
 
-  document.getElementById('deck-progress').textContent = `${deckIndex + 1} of ${QUADRANT_ORGANS.length}`;
+  document.getElementById('deck-progress').textContent = `${deckIndex + 1} of ${deckOrder.length}`;
   document.getElementById('btn-prev-card').disabled = deckIndex === 0;
   document.getElementById('btn-next-card').textContent =
-    deckIndex < QUADRANT_ORGANS.length - 1 ? 'Next →' : 'Restart';
+    deckIndex < deckOrder.length - 1 ? 'Next →' : 'Restart';
 }
 
 function flipCard() {
@@ -640,7 +685,7 @@ function flipCard() {
 }
 
 function nextCard() {
-  deckIndex = deckIndex < QUADRANT_ORGANS.length - 1 ? deckIndex + 1 : 0;
+  deckIndex = deckIndex < deckOrder.length - 1 ? deckIndex + 1 : 0;
   deckFlipped = false;
   renderCard();
 }

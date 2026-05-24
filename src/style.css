@@ -471,7 +471,7 @@ p  { line-height: 1.7; }
 
 .quadrant-layout {
   display: grid;
-  grid-template-columns: 240px 1fr;
+  grid-template-columns: 400px 1fr;
   gap: 1.5rem;
   align-items: start;
 }
@@ -483,7 +483,7 @@ p  { line-height: 1.7; }
 
 .body-svg {
   width: 100%;
-  max-width: 240px;
+  max-width: 400px;
   height: auto;
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -503,6 +503,19 @@ p  { line-height: 1.7; }
 .q-hit { transition: fill-opacity 0.15s, stroke 0.15s; }
 .q-hit:hover { filter: brightness(0.9); }
 .q-hit:focus { outline: none; stroke: #1d4ed8 !important; stroke-width: 2 !important; }
+
+.organ-label {
+  font-size: 7px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  fill: #334155;
+  cursor: pointer;
+  user-select: none;
+}
+.organ-label:hover { fill: #1d4ed8; }
+.organ-label--selected { fill: #1d4ed8; font-weight: 700; }
+.organ-label:focus { outline: none; }
+.organ-label:focus-visible { fill: #1d4ed8; }
 
 .quadrant-info-panel {
   min-height: 200px;

@@ -27,14 +27,14 @@ const QUADRANT_ORGANS = [
     name: 'Right Kidney (Upper)',
     quadrant: 'ruq',
     description: 'Retroperitoneal; the right kidney sits slightly lower than the left due to the liver.',
-    painReferral: 'Flank pain radiating to groin (ureteral colic); CVA tenderness with pyelonephritis.',
-    examTechnique: 'CVA percussion: fist percussion at the costovertebral angle posteriorly. Bimanual palpation for kidney size.',
+    painReferral: 'Kidney pain (pyelonephritis, hydronephrosis): constant flank/CVA pain with fever and dysuria — does NOT radiate to groin. Renal/ureteral colic (stone moving in ureter): severe colicky flank-to-groin pain — that is the stone, not the kidney.',
+    examTechnique: 'CVA percussion: fist percussion at the costovertebral angle posteriorly. Bimanual palpation: patient supine, anterior hand palpates flank deeply while posterior hand (under back) ballots kidney upward.',
   },
   {
     name: 'Duodenum',
     quadrant: 'ruq',
     description: 'First segment of the small intestine; receives bile and pancreatic enzymes. Curves around the pancreatic head.',
-    painReferral: 'Epigastric or RUQ pain; duodenal ulcer pain may be relieved by eating (food buffers acid).',
+    painReferral: 'Duodenal ulcer: pain occurs 2–3 hours after eating (when stomach empties and acid is unbuffered) and classically wakes the patient at 2–4 AM. Food or antacids relieve it. Contrast: gastric ulcer pain is WORSENED by eating.',
     examTechnique: 'Deep palpation of epigastric/RUQ region; assess for guarding or rigidity suggesting perforation.',
   },
   {
@@ -50,7 +50,7 @@ const QUADRANT_ORGANS = [
     quadrant: 'luq',
     description: 'Lies in the LUQ/epigastric region; variable size depending on contents.',
     painReferral: 'Epigastric pain (gastritis, PUD); nausea and early satiety with distension.',
-    examTechnique: 'Auscultate for gastric splash (succussion splash); palpate epigastric region for tenderness.',
+    examTechnique: 'Succussion splash: place stethoscope over epigastrium and rock the patient\'s torso side to side — a splashing sound indicates retained fluid (gastric outlet obstruction). Palpate epigastric region for tenderness.',
   },
   {
     name: 'Spleen',
@@ -64,7 +64,7 @@ const QUADRANT_ORGANS = [
     quadrant: 'luq',
     description: 'Retroperitoneal; slightly higher than the right kidney. Often not palpable without enlargement.',
     painReferral: 'Left flank pain radiating to groin (ureteral colic); left CVA tenderness with pyelonephritis.',
-    examTechnique: 'Left CVA percussion; bimanual palpation with patient in lateral decubitus position.',
+    examTechnique: 'Left CVA percussion. Bimanual palpation: patient supine — anterior hand palpates deeply in left flank while posterior hand (placed under the patient\'s back at the flank) ballots the kidney upward toward the anterior hand.',
   },
   {
     name: 'Pancreas (Body/Tail)',
@@ -77,8 +77,8 @@ const QUADRANT_ORGANS = [
     name: 'Left Adrenal Gland',
     quadrant: 'luq',
     description: 'Sits atop the left kidney; retroperitoneal and not palpable unless grossly enlarged.',
-    painReferral: 'Pheochromocytoma causes episodic severe hypertension with headache, diaphoresis, and palpitations.',
-    examTechnique: 'Not directly palpable; assessed via imaging. Monitor BP for hypertensive crisis pattern.',
+    painReferral: 'Addison\'s disease (adrenal insufficiency): hypotension, hyperpigmentation, fatigue, hyponatremia, hyperkalemia — can present as adrenal crisis with severe hypotension and vomiting. Cushing\'s syndrome (excess cortisol): central obesity, moon face, buffalo hump, hypertension, striae.',
+    examTechnique: 'Not directly palpable; assessed via lab values (cortisol, ACTH, electrolytes) and imaging. Recognize Addisonian crisis: acute hypotension + hyperpigmentation. Pheochromocytoma (adrenal medulla tumor): episodic hypertension, headache, diaphoresis, palpitations — "5 Hs."',
   },
   // ── RLQ ─────────────────────────────────────────────────────────────────────
   {
@@ -107,7 +107,7 @@ const QUADRANT_ORGANS = [
     quadrant: 'rlq',
     description: 'Descends retroperitoneally from the right kidney to the bladder; passes through the RLQ.',
     painReferral: 'Ureteral colic: severe, colicky pain radiating from flank to groin and inner thigh. Nausea and restlessness common.',
-    examTechnique: 'CVA tenderness; urinalysis for hematuria confirms urolithiasis. Colicky pattern distinguishes from appendicitis.',
+    examTechnique: 'CVA tenderness (when stone is near UPJ); urinalysis showing hematuria is consistent with urolithiasis but does not confirm it — up to 15% of stones produce no hematuria. Non-contrast CT KUB is the gold standard. Colicky pattern distinguishes from appendicitis.',
   },
   {
     name: 'Right Ovary / Fallopian Tube',
@@ -127,7 +127,7 @@ const QUADRANT_ORGANS = [
   {
     name: 'Descending Colon',
     quadrant: 'llq',
-    description: 'Travels inferiorly from the splenic flexure to the sigmoid; lies retroperitoneally along the left flank.',
+    description: 'Travels inferiorly from the splenic flexure to the sigmoid colon along the left flank; fixed to the posterior abdominal wall (secondarily retroperitoneal in most individuals).',
     painReferral: 'Left flank/LLQ cramping; left-sided colon cancer more often causes obstructive symptoms (narrower lumen than right colon).',
     examTechnique: 'Palpate along the left flank/LLQ; assess stool pattern changes; fecal occult blood testing in at-risk patients.',
   },
@@ -136,20 +136,20 @@ const QUADRANT_ORGANS = [
     quadrant: 'llq',
     description: 'Descends retroperitoneally from the left kidney through the LLQ to the bladder.',
     painReferral: 'Left ureteral colic: severe, colicky LLQ pain radiating to left groin and inner thigh.',
-    examTechnique: 'Left CVA tenderness; urinalysis for hematuria. Colicky pattern distinguishes ureteral colic from diverticulitis.',
+    examTechnique: 'Left CVA tenderness (when stone is near UPJ); urinalysis for hematuria is supportive but not confirmatory — CT KUB is the gold standard. Colicky onset/offset pattern distinguishes ureteral colic from the steady pain of diverticulitis.',
   },
   {
     name: 'Left Ovary / Fallopian Tube',
     quadrant: 'llq',
     description: 'Female reproductive structures in the LLQ; important differential for LLQ pain in females.',
     painReferral: 'Ovarian cyst rupture (left), ectopic pregnancy (left tube), or PID causing diffuse lower abdominal pain.',
-    examTechnique: "Bimanual pelvic exam for adnexal tenderness; Chandelier sign (cervical motion tenderness) with PID; hCG to rule out ectopic.",
+    examTechnique: 'Bimanual pelvic exam for adnexal tenderness. Cervical motion tenderness (CMT): moving the cervix side-to-side on bimanual exam causes pain — a minimum diagnostic criterion for PID (informally called the Chandelier sign when severe). Serum hCG to rule out ectopic pregnancy.',
   },
   {
     name: 'Bladder (Distended)',
     quadrant: 'llq',
-    description: 'When full, the bladder rises from the pelvis into the lower abdominal region, crossing both LLQ and RLQ.',
-    painReferral: 'Suprapubic pain and urgency with UTI or urinary retention; acute retention causes severe lower abdominal pain.',
-    examTechnique: 'Suprapubic palpation and percussion for bladder distension; assess for dullness above the symphysis pubis.',
+    description: 'Midline suprapubic organ; when distended rises above the pubic symphysis into the hypogastric region spanning both lower quadrants. Placed in LLQ here for reference — it is NOT a left-sided structure.',
+    painReferral: 'Suprapubic pain and urgency with UTI or urinary retention; acute urinary retention causes severe lower abdominal/suprapubic pain and inability to void.',
+    examTechnique: 'Suprapubic palpation and percussion: a distended bladder produces a smooth, midline, dull-to-percussion mass above the symphysis pubis. Assess for tenderness. Inability to void + palpable mass = urinary retention.',
   },
 ];
